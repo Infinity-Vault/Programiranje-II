@@ -1,2 +1,2 @@
 # Programiranje-II
-Repozitorij rješenih zadataka sa predmeta PR-II
+Repozitorij za zadatke i kodove iz PR-II
