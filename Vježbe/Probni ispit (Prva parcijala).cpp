@@ -129,16 +129,17 @@ public:
         return false;
     }
     //Kreiranje operatora dodjele za novi clan niza: (tipa je bool jer se u main testira kroz if()):
-    bool operator +=(const T& obj)
+    	bool operator +=(const T& obj)
     {
         if (_trenutno >= velicina)
             return false;//Jer se ne moze dodati na nealociranu memoriju, tj prekoraciti opseg niza;
-        if (!(_dozvoliDupliciranje && ProvjeridatiClan(obj)))
-        {
+    	if (!(_dozvoliDupliciranje && ProvjeridatiClan(obj)))//Jedino ako su oba true ce se zaobici dodavanje clana na niz;
+    	{
             _niz[_trenutno] = obj;//Operator = za class T;
             _trenutno++;//Povecaj broj clanova;
-        }
-        return true;//Vrati info da je dodan element;
+            return true; //Vrati info da je dodan element;
+    	}
+        return false;
     }
     //Kreiranje operatora -= (mora biti tipa FITArray jer se vrsi promjena na obj):
     bool operator -=(const T& obj)
