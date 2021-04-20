@@ -141,7 +141,7 @@ public:
     	}
         return false;
     }
-    //Kreiranje operatora -= (mora biti tipa FITArray jer se vrsi promjena na obj):
+    //Kreiranje operatora -= 
     bool operator -=(const T& obj)
     {
         bool uklonjen = false;
