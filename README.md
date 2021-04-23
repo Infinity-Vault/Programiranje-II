@@ -15,6 +15,6 @@ Repozitorij za zadatke i kodove iz PR-II
 
 [Vježbe 5.1 - Napredne funkcije ](Vježbe/Vjezbe%205.1.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V5.1_Postavka.docx)
 
-[Probni ispit (Prva parcijala) - Denis Music prvi probni (20.04.2021.)](Vježbe/Probni%20ispit%20(Prva%20parcijala).cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Postavke/Probni%20Music.txt)
+[Probni ispit (Prva parcijala) - Denis Music prvi probni (20.04.2021.)](Vježbe/Probni%20ispit%20(Prva%20parcijala).cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/Music%20probni%20.docx)
 
 [Probni prva parcijala (Kemal) - 22.04.20021](Vježbe/Probni%20prva%20parcijala%20(Kemal).cpp)
