@@ -343,7 +343,7 @@ public:
             return true;
         if (*p1._brojECTS == *p2._brojECTS)
             return true;
-        if (p1._ocjene == p2._ocjene)//Operator == u gener. klasi Kolekcija;
+        if (*p1._ocjene == *p2._ocjene)//Operator == u gener. klasi Kolekcija;Obavezno * jer poredimo vrijednosti objekata a ne njihove adrese;
             return true;
         return false;
     }
