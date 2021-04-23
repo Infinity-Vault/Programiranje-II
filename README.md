@@ -17,4 +17,4 @@ Repozitorij za zadatke i kodove iz PR-II
 
 [Probni ispit (Prva parcijala) - Denis Music prvi probni (20.04.2021.)](Vježbe/Probni%20ispit%20(Prva%20parcijala).cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/Music%20probni%20.docx)
 
-[Probni prva parcijala (Kemal) - 22.04.20021](Vježbe/Probni%20prva%20parcijala%20(Kemal).cpp)
+[Probni prva parcijala (Kemal) - 22.04.20021](Vježbe/Probni%20prva%20parcijala%20(Kemal).cpp) - [Postavka] (https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/Kemal%20probni%20postavka.docx)
