@@ -217,17 +217,17 @@ public:
     //Iako je unutar klase, ovaj operator je globalna fija
     friend bool operator ==(const Kolekcija<T1, T2>& k1, const Kolekcija<T1, T2>& k2)
     {
-        if (k1._trenutno == k2._trenutno)
-            return true;
+        if (k1._trenutno != k2._trenutno)
+            return false;
         //Bool nije potrebno provjeravati, a svakako bi bila greska jer ne bi mogao pristupiti k1 i k2 jer su const a fija DupliranjeOmoguceno nije const, ovo se izbjegne ako se napravi fija DupliranjeOmoguceno const;
-        if (k1.DupliranjeOmoguceno() == k2.DupliranjeOmoguceno())
-            return true;
+        if (k1.DupliranjeOmoguceno() != k2.DupliranjeOmoguceno())
+            return false;
         for (int i = 0; i < k1._trenutno; i++)//Svejedno je do kojeg _trenutno idemo jer su oba po pretpostavci isti;
         {
-            if (k1.getElement1(i) == k2.getElement1(i) || k1.getElement2(i) == k2.getElement2(i))//Podrazumijeva se preklopljen operator == za klase T1 i T2;
-                return true;
+            if (k1.getElement1(i) != k2.getElement1(i) || k1.getElement2(i) != k2.getElement2(i))//Podrazumijeva se preklopljen operator == za klase T1 i T2;
+                return false;
         }
-        return false;
+        return true;
     }
     //Operator !=:
     friend bool operator !=(const Kolekcija<T1, T2>& k1, const Kolekcija<T1, T2>& k2)
