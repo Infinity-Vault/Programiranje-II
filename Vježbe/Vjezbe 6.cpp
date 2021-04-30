@@ -563,7 +563,7 @@ public:
     {
         if (_trenutno == 0)
             return false;//Ne mozemo izbrisati nesto sto ne postoji;
-        delete _elementi[_trenutno - 1];//Trenutno nam pokazuje zadnji aktuelni element;
+        delete _elementi[_trenutno - 1];//Trenutno nam pokazuje zadnji aktuelni element, stoga moramo oduzeti jer indeksacija ide od 0 do _trenutno; Npr( _trenutno=100) bice elemenata od 0 do 99 stoga imamo oduzimanje;
         _elementi[_trenutno - 1] = nullptr;//Nuliramo pokazivac na obj;
         _trenutno--;
         return true;
