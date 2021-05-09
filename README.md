@@ -20,3 +20,5 @@ Repozitorij za zadatke i kodove iz PR-II
 [Probni prva parcijala (Kemal) - 22.04.20021](Vježbe/Probni%20prva%20parcijala%20(Kemal).cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/Kemal%20probni%20postavka.docx)
 
 [Vježbe 6 -Enumeracije](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Vjezbe%206.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V6_Postavka.docx)
+
+[Vježbe 7 -Polimorfizam](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Vjezbe%207.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V7_Postavka.docx)
