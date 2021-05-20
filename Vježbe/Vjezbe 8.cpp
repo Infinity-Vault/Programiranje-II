@@ -305,7 +305,7 @@ public:
     virtual void Ispis() override //Virtual se ne mora stavljati ali je good practice isto za override vazi;
     {
         //Vojnik::Ispis();
-        static_cast<Vojnik>(*this).Ispis();//Moze na oba nacina;SAMO BEZ & jer se sa & desava steack overflow, iznova i iznova se poziva fija;
+               static_cast<Vojnik>(*this).Ispis();//Moze na oba nacina;SAMO BEZ & jer se sa & desava stack overflow, iznova i iznova se poziva fija;
         cout << "Kategorija: ";
         switch (Kategorija_)
         {
