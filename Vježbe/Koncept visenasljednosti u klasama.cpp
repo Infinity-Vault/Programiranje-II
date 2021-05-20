@@ -272,7 +272,7 @@ void testingPojedinacne()
 	cout << crt << endl;
 	Dokument potvrda("Potvrda za bla blala blablabla bla blabla bla.");
 	epson.Isprintaj(potvrda);
-	Dokument skeniraniDoc = hp.Skeniraj();
+	Dokument skeniraniDoc = hp.Skeniraj(); //Pozove se ctor copy a ne operator = jer je ovo kreiranje objekta, a ne inicijaliziranje;
 	cout << skeniraniDoc;
 	mojo.posaljiFax(potvrda);
 }
