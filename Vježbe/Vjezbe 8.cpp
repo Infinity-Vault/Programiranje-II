@@ -40,6 +40,8 @@ unique_ptr<char> UniqueAlokator(const char* tekst)
 //Z0.4:: Provjeriti da li su dva niza karaktera ista (po vrijednosti)
 bool CheckIfIsti(const char* tekst1, const char* tekst2)
 {
+    if(tekst1==nullptr || tekts2==nullptr)
+        return false;
     if (strcmp(tekst1, tekst2) == 0)
         return true;
     return false;
