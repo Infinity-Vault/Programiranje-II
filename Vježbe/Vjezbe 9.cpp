@@ -36,7 +36,7 @@ unique_ptr<char> UniqueAlokator(const char* str)
 
 class Greska : public exception {
     int _linija;
-    const char* _funkcija;
+    const char*  _funkcija;
 public:
     _declspec (property (get = GetPoruka)) const char* Poruka;
     _declspec (property (get = GetLinija, put = SetLinija)) int Linija;
