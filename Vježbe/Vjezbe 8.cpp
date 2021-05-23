@@ -40,6 +40,8 @@ unique_ptr<char> UniqueAlokator(const char* tekst)
 //Z0.4:: Provjeriti da li su dva niza karaktera ista (po vrijednosti)
 bool CheckIfIsti(const char* tekst1, const char* tekst2)
 {
+    if(tekst1==nullptr || tekts2==nullptr)
+        return false;
     if (strcmp(tekst1, tekst2) == 0)
         return true;
     return false;
@@ -305,7 +307,7 @@ public:
     virtual void Ispis() override //Virtual se ne mora stavljati ali je good practice isto za override vazi;
     {
         //Vojnik::Ispis();
-        static_cast<Vojnik>(*this).Ispis();//Moze na oba nacina;SAMO BEZ & jer se sa & desava steack overflow, iznova i iznova se poziva fija;
+               static_cast<Vojnik>(*this).Ispis();//Moze na oba nacina;SAMO BEZ & jer se sa & desava stack overflow, iznova i iznova se poziva fija;
         cout << "Kategorija: ";
         switch (Kategorija_)
         {
