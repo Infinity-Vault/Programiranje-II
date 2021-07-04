@@ -42,7 +42,7 @@ Repozitorij za zadatke i kodove iz PR-II
 [Ispitni 28.08.2019.](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2028.08.2029.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2028.08.2019.%20postavka.docx)
 
 
-[Ispitni 04.07.2019.]() - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2004.07.2019.%20postavka.docx)
+[Ispitni 04.07.2019.](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2004.07.2019.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2004.07.2019.%20postavka.docx)
 
 
 [Ispitni ]() - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2031.08.2020.%20postavka.docx)
