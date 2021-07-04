@@ -30,3 +30,5 @@ Repozitorij za zadatke i kodove iz PR-II
 [Vježbe 9 Exceptions (Greške)](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Vjezbe%209.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V9_Rjesenje.docx)
 
 [Vježbe 10  STL](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Vjezbe%2010.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V10_Postavka.docx)
+
+[Ispitni 31.08.2020.]() - [Postavka]()
