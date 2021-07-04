@@ -32,3 +32,18 @@ Repozitorij za zadatke i kodove iz PR-II
 [Vježbe 10  STL](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Vjezbe%2010.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V10_Postavka.docx)
 
 [Ispitni 31.08.2020.](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2031.08.2020.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2031.08.2020.%20postavka.docx)
+
+
+[Ispitni 31.08.2020.](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2031.08.2020.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2031.08.2020.%20postavka.docx)
+
+
+[Ispitni 15.07.2020.]() - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2015.07.2020.%20postavka.docx)
+
+
+[Ispitni 31.08.2020.]() - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2031.08.2020.%20postavka.docx)
+
+
+[Ispitni 31.08.2020.]() - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2031.08.2020.%20postavka.docx)
+
+
+[Ispitni 31.08.2020.]() - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2031.08.2020.%20postavka.docx)
