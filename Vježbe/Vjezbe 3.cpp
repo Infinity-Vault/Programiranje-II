@@ -9,18 +9,33 @@ using namespace std;
 // move ctor = move constructor (konstruktor premjestanja)
 
 //Z1.0
-char* AlocirajIKopiraj(const char* tekst) {
+//Kreiranje  funckije koja alocira novi char array i prekopira stari u njega:
+char* AlocirajIKopiraj(const char* tekst)
+{
 	if (tekst == nullptr)
-		return nullptr;
-	int vel = strlen(tekst) + 1;
-	char* novi = new char[vel];
-	strcpy_s(novi, vel, tekst);
-	return novi;
+		return nullptr;//Ako je postojeci  char array prazan vrati prazni array;
+	int size = strlen(tekst) + 1;
+	char* noviTxt = new char[size];
+	strcpy_s(noviTxt, size, tekst);
+	return noviTxt;
 }
 
-int Min(int a, int b) { return (a <= b) ? a : b; }
-int Max(int a, int b) { return (a >= b) ? a : b; }
+//Kreiranje funkcije koja vraca min el od dva unesena:
+int Min(int a, int b)
+{
+	if (a <= b)
+		return a;
+	return b;
+}
+//Kreiranje funkcije koja vraca max element od dva unesena:
+int Max(int a, int b)
+{
+	if (a >= b)
+		return a;
+	return b;
+}
 
+//Kreiranje klase Datum:
 class Datum
 {
 private:
@@ -29,58 +44,79 @@ private:
 	int* _godina;
 public:
 	//Z1.1 Dflt. ctor [Postaviti na dflt. vrijednosti]
-	Datum() {
-		_dan = _mjesec = _godina = nullptr;
+	Datum()
+	{
+		_dan = nullptr;
+		_mjesec = nullptr;
+		_godina = nullptr;
 	}
 	//Z1.2 User-def. ctor
-	Datum(int d, int m, int g) {
-		_dan = new int(d);
-		_mjesec = new int(m);
+	Datum(int d, int m, int g)
+	{
+		_dan = new int;//Dflt.ctor za int;
+		*_dan = d;
+		//Drugi nacin:
+		_mjesec = new int(m);// Copy.ctor za int;
 		_godina = new int(g);
 	}
 	//Z1.3 Copy ctor
-	Datum(const Datum& obj) {
-		_dan = new int(*obj._dan);
-		_mjesec = new int(*obj._mjesec);
+	Datum(const Datum& obj)//Parametar moze biti const jer se na njemu nista ne radi od modifikacija;
+	{
+		_dan = new int;//Dflt.ctor za int;
+		*_dan = *obj._dan;
+		//Drugi nacin:
+		_mjesec = new int(*obj._mjesec);//Copy.ctor za int;
 		_godina = new int(*obj._godina);
 	}
 	//Z1.4 Move ctor
-	Datum(Datum&& obj) {
-		_dan = obj._dan;
+	Datum(Datum&& obj) noexcept //Ne moze da bude parametar  const  jer se vrse na njemu promjene
+	{
+		_dan = obj._dan;//Pointer _dan poprima lok i sadrzaj pointera _dan od objekta;
+		obj._dan = nullptr;//Brisemo sadrzaj i lok ovog pointera
 		_mjesec = obj._mjesec;
+		obj._mjesec = nullptr;
 		_godina = obj._godina;
-		obj._dan = obj._mjesec = obj._godina = nullptr;
+		obj._godina = nullptr;
 	}
 	//Z1.5
+//Geteri:
 	int GetDan() const { return *_dan; }
 	int GetMjesec() const { return *_mjesec; }
 	int GetGodina() const { return *_godina; }
 	//Z1.6
-	void SetDan(int dan) {
-		if (_dan == nullptr)
+//Seteri:
+	void SetDan(int dan)
+	{
+		if (_dan == nullptr)//Moramo provjeriti da li je alocirana varijabla prije nego sto joj dodjelimo nesta;
 			_dan = new int;
 		*_dan = dan;
 	}
-	void SetMjesec(int mjesec) {
+	void SetMjesec(int mjesec)
+	{
 		if (_mjesec == nullptr)
 			_mjesec = new int;
 		*_mjesec = mjesec;
 	}
-	void SetGodina(int godina) {
+	void SetGodina(int godina)
+	{
 		if (_godina == nullptr)
 			_godina = new int;
 		*_godina = godina;
 	}
 	//Z1.7
-	void Ispis() {
-		cout << *_dan << "." << *_mjesec << "." << *_godina;
+	void Ispis()
+	{
+		cout << *_dan << "." << *_mjesec << "." << *_godina << ".";
 	}
 	//Z1.8
-	~Datum() {
+	~Datum()
+	{
 		delete _dan, _mjesec, _godina;
 		_dan = _mjesec = _godina = nullptr;
 	}
 };
+
+//Kreiranje klase Glumac:
 class Glumac
 {
 private:
@@ -91,91 +127,110 @@ private:
 	bool* _spol; //1-Muski, 0-Zenski
 public:
 	//Z2.0 Dflt. ctor
-	Glumac() {
-		_ime = _prezime = _zemljaPorijekla = nullptr;
+	Glumac()
+	{
+		_ime = nullptr;
+		_prezime = nullptr;
+		_zemljaPorijekla = nullptr;
 		_datumRodjenja = nullptr;
 		_spol = nullptr;
 	}
 	//Z2.1 User-def. ctor
-	Glumac(const char* ime, const char* prez, const char* zemlja, int d, int m, int g, bool spol) {
+	Glumac(const char* ime, const char* prezime, const char* zemlja, int d, int m, int g, bool spol)
+		:_datumRodjenja(new Datum(d,m,g))//user-def .ctor
+	{
 		_ime = AlocirajIKopiraj(ime);
-		_prezime = AlocirajIKopiraj(prez);
+		_prezime = AlocirajIKopiraj(prezime);
 		_zemljaPorijekla = AlocirajIKopiraj(zemlja);
-		_datumRodjenja = new Datum(d, m, g); // 
 		_spol = new bool(spol);
 	}
 	//Z2.2 Copy ctor
-	Glumac(const Glumac& obj) {
+	Glumac(const Glumac& obj)
+		//:_datumRodjenja(obj._datumRodjenja)//Vidi da li moze ovako ???
+		:_datumRodjenja(new Datum(*obj._datumRodjenja))//Copy .ctor;
+	{
 		_ime = AlocirajIKopiraj(obj._ime);
 		_prezime = AlocirajIKopiraj(obj._prezime);
 		_zemljaPorijekla = AlocirajIKopiraj(obj._zemljaPorijekla);
-		_datumRodjenja = new Datum(*obj._datumRodjenja);
-		_spol = new bool(*obj._spol);
+		_spol = new bool(*obj._spol);//Cpy .ctor; * JER MORA VRATIT INT A NE ADRESU NEKOG INT !!!
 	}
 	//Z2.3 Move ctor
-	Glumac(Glumac&& obj) {
+	Glumac(Glumac&& obj) noexcept
+		:_datumRodjenja(move(obj._datumRodjenja))
+	{
 		_ime = obj._ime;
 		obj._ime = nullptr;
 		_prezime = obj._prezime;
 		obj._prezime = nullptr;
 		_zemljaPorijekla = obj._zemljaPorijekla;
 		obj._zemljaPorijekla = nullptr;
-		_datumRodjenja = obj._datumRodjenja;
+		//_datumRodjenja = obj._datumRodjenja;
 		obj._datumRodjenja = nullptr;
 		_spol = obj._spol;
 		obj._spol = nullptr;
 	}
 	//Z2.4
+//Geteri:
 	char* GetIme() const { return _ime; }
 	char* GetPrezime() const { return _prezime; }
 	char* GetZemljaPorijekla() const { return _zemljaPorijekla; }
-	Datum GetDatumRodjenja() const { return *_datumRodjenja; }
+	Datum GetDatumRodjenja() const { return *_datumRodjenja; }//Posto vracamo Datum a ne Datum& ondje gdje se pozvala ova fija ce biti kreiran i pozvan dflt.ctor
 	bool GetSpol() const { return *_spol; }
 
 	//Z2.5
-	void SetIme(const char* ime) {
-		delete[] _ime;
+//Setteri:
+	void SetIme(const char* ime)
+	{
+		delete[] _ime;//Nema potrebe da se pita jel nullptr jer su oni vazda junk ili puni medjutim mora im se sadrzaj izbrisati;
 		_ime = AlocirajIKopiraj(ime);
 	}
-	void SetPrezime(const char* prezime) {
-		delete[] _prezime;
+	void SetPrezime(const char* prezime)
+	{
+		delete[]_prezime;
 		_prezime = AlocirajIKopiraj(prezime);
 	}
-	void SetZemljaPorijekla(const char* zemlja) {
-		delete[] _zemljaPorijekla;
+	void SetZemljaPorijekla(const char* zemlja)
+	{
+		delete[]_zemljaPorijekla;
 		_zemljaPorijekla = AlocirajIKopiraj(zemlja);
 	}
-	void SetDatumRodjenja(Datum datumRodjenja) {
+	void SetDatumRodjenja(Datum datumRodjenja)
+	{
 		if (_datumRodjenja == nullptr)
-			_datumRodjenja = new Datum;
-		_datumRodjenja->SetDan(datumRodjenja.GetDan());
+			_datumRodjenja = new Datum;//Dflt .ctor
+		//Posto je vec kreiran moramo iskoristit setere i getere tog objekta:
+		//_datumRodjenja(datumRodjenja.GetDan(), datumRodjenja.GetMjesec(), datumRodjenja.GetGodina()) OVO NE MOZE JER JE OVO POZIVANJE CTOR-A ZA VEC KREIRAN OBJEKAT
+		_datumRodjenja->SetDan(datumRodjenja.GetDan());//Dereferenciranje objekta _datumRodjenja sa ->
 		_datumRodjenja->SetMjesec(datumRodjenja.GetMjesec());
 		_datumRodjenja->SetGodina(datumRodjenja.GetGodina());
 	}
-	void SetSpol(bool spol) {
+	void SetSpol(bool spol)
+	{
 		if (_spol == nullptr)
-			_spol = new bool;
+			_spol = new bool;//Dflt .ctor
 		*_spol = spol;
 	}
 
 	//Z2.6
-	void Ispis() {
-		cout << "Ime i prezime: " << _ime << " " << _prezime << endl;
-		cout << "Zemlja porijekla: " << _zemljaPorijekla << endl;
-		cout << "Datum rodjenja: ";
+	void Ispis()
+	{
+		cout << "Ime i prezime : " << _ime << " " << _prezime << endl;
+		cout << "Zemlja porijekla : " << _zemljaPorijekla << endl;
+		cout << "Datum rodjenja : ";//Nema endl; jer necemo u novi red;
 		_datumRodjenja->Ispis();
-		cout << endl;
-		cout << "Spol: " << ((*_spol == true) ? "Muski" : "Zenski") << endl;
+		cout << "Spol je : " << ((*_spol==true) ? "Musko" : "Zensko") << endl;//Ne zab dereferencirat _spol jer je pointer !!!
 	}
 	//Z2.7
-	~Glumac() {
+	~Glumac()
+	{
 		delete[] _ime, _prezime, _zemljaPorijekla;
-		_ime = nullptr, _prezime = nullptr, _zemljaPorijekla = nullptr;
-		delete _datumRodjenja, _spol;
-		_datumRodjenja = nullptr, _spol = nullptr;
+		_ime= _prezime= _zemljaPorijekla = nullptr;
+		delete _datumRodjenja, _datumRodjenja = nullptr;
+		delete _spol, _spol = nullptr;
 	}
 };
 
+//Kreiranje klase Epizoda:
 class Epizoda {
 private:
 	char* _naziv;
@@ -189,60 +244,70 @@ private:
 public:
 	//Z3.0
 	//Settovati vrijednosti na defaultne
-	Epizoda() {
+	Epizoda()
+		:_datumPremijere()//Iako nema potrebe za ovim jer je to uradjeno vec gore (pozvan dflt.ctor);
+	{
 		_naziv = nullptr;
 		_trajanje = nullptr;
-		strcpy_s(_kratakSadrzaj, 100, ""); //Kopiramo empty string u niz karaktera _kratakSadrzaj
+		strcpy_s(_kratakSadrzaj, 100, "");//Postavljanje na empty string;
 		_maxBrojOcjena = 0;
-		_ocjene = nullptr;
 		_trenutnoOcjena = 0;
-		//Objekat _datumPremijere je vec kreiran pomocu dflt. ctor-a
+		_ocjene = nullptr;
 	}
 	//Z3.1
 	Epizoda(const char* naziv, int trajanje, const char* kratakOpis, Datum datum, int ukupnoOcjena)
-		:_datumPremijere(datum.GetDan(), datum.GetMjesec(), datum.GetGodina())
+		:_datumPremijere(datum.GetDan(),datum.GetMjesec(),datum.GetGodina())//Jer je ovo user-def .ctor;
 	{
 		_naziv = AlocirajIKopiraj(naziv);
-		_trajanje = new int(trajanje);
+		_trajanje = new int(trajanje);//Copy .ctor za int;
 		strcpy_s(_kratakSadrzaj, 100, kratakOpis);
+		//Header ili:
+		/*_datumPremijere.SetDan(datum.GetDan());
+		_datumPremijere.SetMjesec(datum.GetMjesec());
+		_datumPremijere.SetGodina(datum.GetGodina());*/
 		_maxBrojOcjena = ukupnoOcjena;
 		_ocjene = new int[_maxBrojOcjena];
 		_trenutnoOcjena = 0;
 	}
 	//Z3.2
-	Epizoda(const Epizoda& obj) : _datumPremijere(obj._datumPremijere) {
+	Epizoda(const Epizoda& obj)
+		:_datumPremijere((obj._datumPremijere))//Cpy .ctor 
+	{
 		_naziv = AlocirajIKopiraj(obj._naziv);
 		_trajanje = new int(*obj._trajanje);
 		strcpy_s(_kratakSadrzaj, 100, obj._kratakSadrzaj);
 		_maxBrojOcjena = obj._maxBrojOcjena;
-		_trenutnoOcjena = obj._trenutnoOcjena;
 		_ocjene = new int[_maxBrojOcjena];
-		//Kopiranje ocjena iz obj._ocjene u this->_ocjene
-		for (size_t i = 0; i < _maxBrojOcjena; i++)
+		for (int i = 0; i < _maxBrojOcjena; i++)
+		{
 			_ocjene[i] = obj._ocjene[i];
+		}
+		_trenutnoOcjena = obj._trenutnoOcjena;
 	}
-
 	//Z3.3
-	Epizoda(Epizoda&& obj) : _datumPremijere(move(_datumPremijere)) {
-		_naziv = obj._naziv; //Radimo preusmjeravanje
+	Epizoda(Epizoda&& obj) noexcept
+		:_datumPremijere(move(obj._datumPremijere))//Move .ctor
+	{
+		_naziv = obj._naziv;
 		obj._naziv = nullptr;
-		_trajanje = obj._trajanje; //Radimo preusmjeravanje
+		_trajanje = obj._trajanje;;
 		obj._trajanje = nullptr;
 		strcpy_s(_kratakSadrzaj, 100, obj._kratakSadrzaj);
-		//Radimo 'premjestanje' niza ocjena iz objekta 'obj' u objekat sa kojim trenutno radimo ('this')
+		strcpy_s(obj._kratakSadrzaj, 100, "");//Kako bi se vratilo u prazni string;
 		_maxBrojOcjena = obj._maxBrojOcjena;
 		obj._maxBrojOcjena = 0;
-		_trenutnoOcjena = obj._trenutnoOcjena;
-		obj._trenutnoOcjena = 0;
 		_ocjene = obj._ocjene;
 		obj._ocjene = nullptr;
+		_trenutnoOcjena = obj._trenutnoOcjena;
+		obj._trenutnoOcjena = 0;
 	}
 
 	//Z3.4
+//Geteri:
 	char* GetNaziv() const { return _naziv; }
 	int GetTrajanje() const { return *_trajanje; }
 	const char* GetKratakSadrzaj() const { return _kratakSadrzaj; }
-	Datum GetDatumPremijere() const { return _datumPremijere; }
+	Datum GetDatumPremijere() const { return _datumPremijere; }//Ondje gdje se pozove tu se okine Datum dflt.ctor jer ne vraca Datum& vec Datum;
 	int GetTrenutnoOcjena() const { return _trenutnoOcjena; }
 	int GetMaxBrojOcjena() const { return _maxBrojOcjena; }
 
@@ -250,25 +315,31 @@ public:
 	//Vratiti vrijednost na lokaciji specificiranoj ulaznim parametrom 'index'
 	//Ukoliko je proslijedjena nevalidna vrijednost, potrebno je vratiti element niza sa najblizim validnim indeksom
 	//Npr. Ako je index = -5, vratiti vrijednost _ocjene na indexu 0; Isto vazi i za indekse vece od vrijednosti brojaca '_trenutnoOcjena'.
-	int GetOcjena(int index) const {
+	int GetOcjena(int index) const
+	{
 		index = Max(index, 0);
-		index = Min(index, _trenutnoOcjena - 1);
-		return _ocjene[index];
+		index = Min(index, _trenutnoOcjena - 1);//-1 jer se krece od 0 ???
+		return _ocjene[index];//Zar se sa ove dvije linije nece mijenjati indeks ???
 	}
 	//Z3.6
-	void SetNaziv(const char* naziv) {
-		delete[] _naziv;
+//
+	void SetNaziv(const char* naziv)
+	{
+		delete[]_naziv;
 		_naziv = AlocirajIKopiraj(naziv);
 	}
-	void SetTrajanje(int trajanje) {
+	void SetTrajanje(int trajanje)
+	{
 		if (_trajanje == nullptr)
-			_trajanje = new int;
+			_trajanje = new int;//Dflt .ctor za int;
 		*_trajanje = trajanje;
 	}
-	void SetKratakSadrzaj(const char* kratakSadrzaj) {
+	void SetKratakSadrzaj(const char* kratakSadrzaj)
+	{
 		strcpy_s(_kratakSadrzaj, 100, kratakSadrzaj);
 	}
-	void SetDatumPremijere(Datum datum) {
+	void SetDatumPremijere(Datum datum)
+	{
 		_datumPremijere.SetDan(datum.GetDan());
 		_datumPremijere.SetMjesec(datum.GetMjesec());
 		_datumPremijere.SetGodina(datum.GetGodina());
@@ -279,62 +350,79 @@ public:
 	//	*Konstruisati novi niz velicine [_maxBrojOcjena + prosiriZa]
 	//  *Kopirati vrijednosti iz starog niza u novi niz
 	//  *Dealocirati stari niz
-	void ProsiriNizOcjena(int prosiriZa) {
-		if (_ocjene == nullptr) {
-			_ocjene = new int[prosiriZa];
-			return;
+	void ProsiriNizOcjena(int prosiriZa)
+	{
+		//Prvo moramo provjeriti da li je stari niz uopce alociran:
+		if(_ocjene==nullptr)
+		{
+			_ocjene = new int[prosiriZa];//Jer ce to biti trenutna velicina niza posto nije nista prije bilo;
+			return;//Kako bi izasli iz fije;
 		}
-		int* temp = _ocjene;
-		_maxBrojOcjena += prosiriZa;
-		_ocjene = new int[_maxBrojOcjena];
-		for (size_t i = 0; i < _trenutnoOcjena; i++)
-			_ocjene[i] = temp[i];
-		delete[] temp;
-		temp = nullptr;
+		_maxBrojOcjena = _maxBrojOcjena + prosiriZa;
+		_ocjene = new int[_maxBrojOcjena];//Prosirimo niz za novu velicinu;
+		int* temp = _ocjene;//Napravimo pokazivac koji pokazuje na stari niz ocjena;
+		for (int i = 0; i < _trenutnoOcjena; i++)
+		{
+			_ocjene[i] = temp[i];//Prekopiramo sve iz starog niza stim da ce novi niz biti sa jednim viska mjestom (koje smo sada kreirali);
+		}
+		delete[]temp;//Obrisemo niz;
+		temp = nullptr;//Nullpointamo niz;
 	}
 
 	//Z3.8
 	//Ukoliko je brojac dosao do kraja (jednak velicini niza), uraditi prosirivanje niza za 10 elemenata;
-	void DodajOcjenu(int ocjena) {
+	void DodajOcjenu(int ocjena)
+	{
 		if (_trenutnoOcjena == _maxBrojOcjena)
-			ProsiriNizOcjena(10);
-		_ocjene[_trenutnoOcjena] = ocjena;
-		_trenutnoOcjena++;
+			ProsiriNizOcjena(10);//Prosirimo niz za 10;
+		else {
+			_ocjene[_trenutnoOcjena] = ocjena;//Dodamo ocjenu;
+			_trenutnoOcjena++;//Povecamo brojac ocjena;
+		}
 	}
 	//Z3.9
-	bool UkloniZadnjuOcjenu() {
+	bool UkloniZadnjuOcjenu()
+	{
 		if (_trenutnoOcjena == 0)
-			return false;
-		_trenutnoOcjena--;
+			return false;//Ne mozemo ukloniti ako nista nema;
+		_trenutnoOcjena--;//Dekrementujemo brojac ocjena;
 		return true;
 	}
-
 	//Z3.10
-	float GetProsjecnaOcjena() {
-		float suma = 0.0;
-		for (size_t i = 0; i < _trenutnoOcjena; i++)
-			suma += _ocjene[i];
-		return (_trenutnoOcjena >= 1) ? suma / _trenutnoOcjena : 0.0;
+	float GetProsjecnaOcjena()
+	{
+		float prosjek = 0.0;
+		for (int i = 0; i < _trenutnoOcjena; i++)
+		{
+			prosjek += _ocjene[i];
+		}
+		if (_trenutnoOcjena >= 1)
+			return prosjek /= _trenutnoOcjena;
+		else
+			return 0.0;//Ako je 0 elemenata logicno da nema prosjeka;
 	}
 	//Z3.11
-	void Ispis() {
-		cout << "Naziv: " << _naziv << endl;
-		cout << "Trajanje (u minutama): " << *_trajanje << endl;
-		cout << "Kratak sadrzaj: " << _kratakSadrzaj << endl;
-		cout << "Premijerno prikazivanje: ";
+	void Ispis()
+	{
+		cout << "Naziv : " << _naziv << endl;
+		cout << "Trajanje (u minutama) : " << _trajanje << endl;
+		cout << "Kratak sadrzaj : " << _kratakSadrzaj << endl;
+		cout << "Premijerno prikazivanje : ";//Ne zelimo endl;
 		_datumPremijere.Ispis();
 		cout << endl;
-		cout << "Prosjecna ocjena: " << GetProsjecnaOcjena() << endl;
-
+		cout << "Prosjecna ocjena : " << GetProsjecnaOcjena() << endl;
 	}
 	//Z3.12
-	~Epizoda() {
-		delete[] _naziv, _ocjene; //dealociranje nizova
-		_naziv = nullptr, _ocjene = nullptr;
-		delete _trajanje; //dealociranje jedne varijable
+	~Epizoda()
+	{
+		delete[]_naziv,_ocjene;
+		_ocjene = nullptr, _naziv = nullptr;
+		delete _trajanje;
 		_trajanje = nullptr;
 	}
 };
+
+//Kreiranje klase Uloga:
 class Uloga {
 private:
 	Glumac* _glumac;
@@ -342,71 +430,81 @@ private:
 	char* _tipUloge; //Glavna, sporedna, epizodna, statista, gostujuca zvijezda, cameo ...
 public:
 	//Z4.0
-	Uloga() {
+	Uloga()
+	{
 		_glumac = nullptr;
 		_opis = nullptr;
 		_tipUloge = nullptr;
 	}
 	//Z4.1
-	Uloga(Glumac& glumac, const char* opis, const char* tip) {
-		_glumac = new Glumac(glumac);
+	Uloga(Glumac& glumac, const char* opis, const char* tip)
+		:_glumac(new Glumac(glumac))//User-def .ctor
+	{
 		_opis = AlocirajIKopiraj(opis);
 		_tipUloge = AlocirajIKopiraj(tip);
 	}
 	//Z4.2
-	Uloga(const Uloga& obj) {
-		_glumac = new Glumac(*obj._glumac);
+	Uloga(const Uloga& obj)
+		:_glumac(new Glumac(*obj._glumac))//Copy .ctor; * jer je _glumac pok na objekat tipa Glumac a ocekuje se samo objekat  tipa Glumac;
+	{
 		_opis = AlocirajIKopiraj(obj._opis);
 		_tipUloge = AlocirajIKopiraj(obj._tipUloge);
 	}
 	//Z4.3
-	Uloga(Uloga&& obj) {
-		_glumac = obj._glumac;
-		obj._glumac = nullptr;
+	Uloga(Uloga&& obj) noexcept
+		:_glumac(move(obj._glumac))//Move .ctor
+	{
 		_opis = obj._opis;
 		obj._opis = nullptr;
 		_tipUloge = obj._tipUloge;
 		obj._tipUloge = nullptr;
+		obj._glumac = nullptr;
 	}
-
-
 	//Z4.4
+//Geteri:
 	Glumac GetGlumac() const { return *_glumac; }
 	char* GetOpis() const { return _opis; }
 	char* GetTipUloge() const { return _tipUloge; }
 	//Z4.5
-	void SetGlumac(Glumac glumac) {
+//Seteri:
+	void SetGlumac(Glumac glumac)
+	{
 		if (_glumac == nullptr)
 			_glumac = new Glumac;
 		_glumac->SetIme(glumac.GetIme());
 		_glumac->SetPrezime(glumac.GetPrezime());
-		_glumac->SetZemljaPorijekla(glumac.GetZemljaPorijekla());
 		_glumac->SetDatumRodjenja(glumac.GetDatumRodjenja());
 		_glumac->SetSpol(glumac.GetSpol());
+		_glumac->SetZemljaPorijekla(glumac.GetZemljaPorijekla());
 	}
-	void SetOpis(const char* opis) {
+	void SetOpis(const char* opis)
+	{
 		delete[] _opis;
 		_opis = AlocirajIKopiraj(opis);
 	}
-	void SetTipUloge(const char* tipUloge) {
-		delete[] _tipUloge;
+	void SetTipUloge(const char* tipUloge)
+	{
+		delete[]_tipUloge;
 		_tipUloge = AlocirajIKopiraj(tipUloge);
 	}
 	//Z4.6
-	void Ispis() {
-		cout << "Glumac: " << endl;
+	void Ispis()
+	{
+		cout << "Glumac : "<<_glumac << endl;
 		_glumac->Ispis();
-		cout << "Opis uloge: " << _opis << endl;
-		cout << "Tip uloge: " << _tipUloge << endl;
+		cout << "Opis uloge : " << _opis << endl;
+		cout << "Tip uloge : " << _tipUloge << endl;
 	}
 	//Z4.7
-	~Uloga() {
-		delete _glumac; //dealociranje objekta
-		_glumac = nullptr;
-		delete[] _opis, _tipUloge; //dealociranje nizova
-		_opis = nullptr, _tipUloge = nullptr;
+	~Uloga()
+	{
+		delete[] _tipUloge, _opis;
+		_tipUloge= _opis = nullptr;
+		delete _glumac, _glumac = nullptr;
 	}
 };
+
+//Kreiranje klase Serija:
 class Serija {
 private:
 	char* _naziv;
@@ -418,61 +516,70 @@ private:
 	Epizoda* _epizode;
 public:
 	//Z5.0
-	Serija() {
+	Serija()
+	{
 		_naziv = nullptr;
+		_trenutnoEpizoda = 0;
 		_trenutnoUloga = 0;
 		_maxBrojEpizoda = 0;
 		_epizode = nullptr;
-		_trenutnoEpizoda = 0;
 	}
 	//Z5.1
-	Serija(const char* naziv, int maxBrojEpizoda) {
+	Serija(const char* naziv, int maxBrojEpizoda)
+	{
 		_naziv = AlocirajIKopiraj(naziv);
-		_trenutnoUloga = 0;
 		_maxBrojEpizoda = maxBrojEpizoda;
+		_epizode = new Epizoda[_maxBrojEpizoda];
 		_trenutnoEpizoda = 0;
-		_epizode = new Epizoda[_maxBrojEpizoda]; //Pozivaju se defaultni konstruktori za elemente niza
+		_trenutnoUloga = 0;
 	}
 	//Z5.2
-	Serija(const Serija& obj) {
+	Serija(const Serija& obj)
+	{
 		_naziv = AlocirajIKopiraj(obj._naziv);
 		_trenutnoUloga = obj._trenutnoUloga;
-		for (size_t i = 0; i < _trenutnoUloga; i++)
-			_uloge[i] = new Uloga(*obj._uloge[i]);
+		for (int i = 0;i  < _trenutnoUloga; i++)
+		{
+			_uloge[i] = new Uloga(*obj._uloge[i]);//Nove pokazivace stavi da pokazuju na stare elemente niza (uloge) pomocu copy .ctor;
+		}
 		_maxBrojEpizoda = obj._maxBrojEpizoda;
-		_epizode = new Epizoda[_maxBrojEpizoda]; //Pozivaju se defaultni konstruktori za elemente niza
-		_trenutnoEpizoda = obj._trenutnoEpizoda;
-		for (size_t i = 0; i < _trenutnoEpizoda; i++)
+		_epizode = new Epizoda[_maxBrojEpizoda];
+		for (int i = 0; i < _maxBrojEpizoda; i++)
 		{
 			_epizode[i].SetNaziv(obj._epizode[i].GetNaziv());
 			_epizode[i].SetTrajanje(obj._epizode[i].GetTrajanje());
-			_epizode[i].SetKratakSadrzaj(obj._epizode[i].GetKratakSadrzaj());
 			_epizode[i].SetDatumPremijere(obj._epizode[i].GetDatumPremijere());
-			for (size_t j = 0; j < obj._epizode[i].GetTrenutnoOcjena(); j++)
+			_epizode[i].SetKratakSadrzaj(obj._epizode[i].GetKratakSadrzaj());
+			for (int j = 0; j < _epizode[i].GetTrenutnoOcjena(); j++)
+			{
 				_epizode[i].DodajOcjenu(obj._epizode[i].GetOcjena(j));
+			}
 		}
 	}
-
 	//Z5.3
-	bool DodajUlogu(Uloga& uloga) {
+	bool DodajUlogu(Uloga& uloga)
+	{
 		if (_trenutnoUloga == 50)
 			return false;
-		//Obzirom da objekti (tipa Uloga) vec postoje, koristimo settere
-		_uloge[_trenutnoUloga] = new Uloga(uloga);
+		/*_uloge[_trenutnoUloga]->SetGlumac(uloga.GetGlumac());
+		_uloge[_trenutnoUloga]->SetOpis(uloga.GetOpis());
+		_uloge[_trenutnoUloga]->SetTipUloge(uloga.GetTipUloge());*/
+		//Ili:
+		_uloge[_trenutnoUloga] = new Uloga(uloga);//Cpy .ctor;
 		_trenutnoUloga++;
 		return true;
 	}
 	//Z5.4
-	bool DodajEpizodu(Epizoda& ep) {
+	bool DodajEpizodu(Epizoda& ep)
+	{
 		if (_trenutnoEpizoda == _maxBrojEpizoda)
 			return false;
-
 		_epizode[_trenutnoEpizoda].SetNaziv(ep.GetNaziv());
 		_epizode[_trenutnoEpizoda].SetTrajanje(ep.GetTrajanje());
 		_epizode[_trenutnoEpizoda].SetKratakSadrzaj(ep.GetKratakSadrzaj());
 		_epizode[_trenutnoEpizoda].SetDatumPremijere(ep.GetDatumPremijere());
-
-		for (size_t i = 0; i < ep.GetTrenutnoOcjena(); i++) {
+		for (int i = 0; i < ep.GetTrenutnoOcjena(); i++)
+		{
 			int ocjena = ep.GetOcjena(i);
 			_epizode[_trenutnoEpizoda].DodajOcjenu(ocjena);
 		}
@@ -480,52 +587,57 @@ public:
 		return true;
 	}
 	//Z5.5
-	Epizoda* GetNajboljeOcijenjenaEpizoda() {
-		Epizoda* adresa = _epizode; //adresa 0-og elementa u nizu
-		float najvecaProsjecna = 0.0;
-		for (size_t i = 0; i < _trenutnoEpizoda; i++) {
-			if (najvecaProsjecna <= _epizode[i].GetProsjecnaOcjena())
+	Epizoda* GetNajboljeOcijenjenaEpizoda()
+	{
+		float najboljaProsjecna = 0.0;
+		Epizoda* najbolja = &_epizode[0];
+		for (int i = 0; i < _trenutnoEpizoda; i++)
+		{
+			if(_epizode[i].GetProsjecnaOcjena()>=najboljaProsjecna)
 			{
-				najvecaProsjecna = _epizode[i].GetProsjecnaOcjena();
-				adresa = _epizode + i;
+				najbolja = _epizode + i;
+				najboljaProsjecna = _epizode[i].GetProsjecnaOcjena();
 			}
 		}
-		return adresa;
+		return najbolja;
 	}
 	//Z5.6 :: Pored ostalih atributa ispisati i sve uloge i sve epizode
-	void Ispis() {
-		cout << "Naziv serije: " << _naziv << endl;
-		cout << "Broj uloga: " << _trenutnoUloga << endl;
-		for (size_t i = 0; i < _trenutnoUloga; i++)
+	void Ispis()
+	{
+		cout << "Naziv serije : " << _naziv << endl;
+		cout << "Broj uloga : " << _trenutnoUloga << endl;
+		for (int i = 0; i < _trenutnoUloga; i++)
 		{
 			cout << "**************************************************\n";
-			cout << "Uloga " << "[" << i + 1 << "]" << endl;
+			cout << "Uloga " << "[" << i + 1 << "]" << endl;//Broj  trenutne uloge;
 			cout << "---------------------------------------------\n";
 			_uloge[i]->Ispis();
 			cout << "---------------------------------------------\n";
 		}
-		cout << "Broj epizoda: " << _trenutnoEpizoda << endl;
-		for (size_t i = 0; i < _trenutnoEpizoda; i++)
+		cout << "Broj episoda : " << _trenutnoEpizoda << endl;
+		for (int i = 0; i < _trenutnoEpizoda; i++)
 		{
 			cout << "**************************************************\n";
-			cout << "Epizoda " << "[" << i + 1 << "]" << endl;
+			cout << "Epizoda " << "[" << i + 1 << "]" << endl;//Broj  trenutne epizode;
 			cout << "---------------------------------------------\n";
 			_epizode[i].Ispis();
 			cout << "---------------------------------------------\n";
 		}
 	}
 	//Z5.7
-	~Serija() {
-		delete[] _naziv;
-		_naziv = nullptr;
-		for (size_t i = 0; i < 50; i++) {
+	~Serija()
+	{
+		delete[] _naziv, _naziv = nullptr;
+		delete[] _epizode, _epizode = nullptr;
+		for (int i = 0; i < _trenutnoUloga; i++)
+		{
 			delete _uloge[i];
 			_uloge[i] = nullptr;
 		}
-		delete[] _epizode;
-		_epizode = nullptr;
 	}
 };
+
+
 void Zadatak1() {
 	cout << "Testiranje klase 'Datum'\n\n";
 	Datum novaGodina; //Def. ctor
@@ -554,7 +666,6 @@ void Zadatak1() {
 	cout << endl;
 	cout << "Dealokacija ..." << endl;
 }
-
 void Zadatak2() {
 	cout << "Testiranje klase 'Glumac'\n\n";
 	Glumac ryanGosling; //Def. ctor
@@ -716,6 +827,3 @@ void main() {
 		} while (nastaviDalje != 0 && nastaviDalje != 1);
 	}
 }
-
-
-	//AUTOR: KEMAL MARIC
