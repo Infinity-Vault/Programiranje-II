@@ -46,7 +46,7 @@ Repozitorij za zadatke i kodove iz PR-II
 
 [Ispitni 31.08.2020](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2031.08.2020.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2031.08.2020.%20postavka.docx)
 
-[Ispitni 16.07.2021](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2016.07.2021.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Postavke/Ispitni%2016.07.2021%20postavka.pdf)
+[Ispitni 16.07.2021](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2016.07.2021%20G1.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Postavke/Ispitni%2016.07.2021%20%20G1%20postavka.pdf)
 
 [Ispitni 25.06.2021 G1](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2025.06.2021%20G1.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Postavke/Ispitni%2025.06.2021%20G1%20postavka.pdf)
 
