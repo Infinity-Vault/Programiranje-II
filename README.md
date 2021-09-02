@@ -34,7 +34,7 @@ Repozitorij za zadatke i kodove iz PR-II
 
 ## Ispitni Zadaci 
 
-[Ispitni 24.01.2019](Ispitni%20zadaci/Postavke/Ispitni%2024.1.2019%20postavka.docx)
+[Ispitni 24.01.2019](Ispitni%20zadaci/Ispitni%2024.1.2019.cpp) - [Postavka](Ispitni%20zadaci/Postavke/Ispitni%2024.1.2019%20postavka.docx)
 
 [Ispitni 20.06.2019](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2020.06.2019.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Ispitni%20zadaci/Postavke/Ispitni%2020.06.2019.%20postavka.docx)
 
