@@ -1,7 +1,7 @@
 # Programiranje-II
 Repozitorij za zadatke i kodove iz PR-II
 
-## Vježbe 
+* Vježbe *
 
 
 <hr>
@@ -36,7 +36,9 @@ Repozitorij za zadatke i kodove iz PR-II
 
 <hr>
 
-## Ispitni Zadaci 
+* Ispitni Zadaci *
+
+<hr>
 
 [Ispitni 24.01.2019](Ispitni%20zadaci/Ispitni%2024.1.2019.cpp) - [Postavka](Ispitni%20zadaci/Postavke/Ispitni%2024.1.2019%20postavka.pdf)
 
