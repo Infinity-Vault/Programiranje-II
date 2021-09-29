@@ -24,7 +24,7 @@ Repozitorij za zadatke i kodove iz PR-II
 
 [Vježbe 6 -Enumeracije](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Vjezbe%206.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V6_Postavka.docx)
 
-[Vježbe 7 -Polimorfizam](https://github.com/Infinity-Vault/Pr	ogramiranje-II/blob/main/Vje%C5%BEbe/Vjezbe%207.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V7_Postavka.docx)
+[Vježbe 7 -Polimorfizam](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Vjezbe%207.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V7_Postavka.docx)
 
 [Koncept visenasljednosti u klasama (Music predavanje) 10.05.2021.](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Koncept%20visenasljednosti%20u%20klasama.cpp)
 
