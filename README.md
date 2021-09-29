@@ -1,7 +1,7 @@
 # Programiranje-II
 Repozitorij za zadatke i kodove iz PR-II
 
-*Vježbe*
+#*Vježbe*
 
 
 <hr>
@@ -36,7 +36,8 @@ Repozitorij za zadatke i kodove iz PR-II
 
 <hr>
 
-*Ispitni Zadaci*
+<br>
+#*Ispitni Zadaci*
 
 <hr>
 
