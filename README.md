@@ -4,6 +4,8 @@ Repozitorij za zadatke i kodove iz PR-II
 ## Vježbe 
 
 
+<hr>
+
 [Vježbe 1 - Uvod u OOP](Vježbe/Vjezbe%201.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V1_Postavka.docx)
 
 [Vježbe 2 - Klase i objekti](Vježbe/Vjezbe%202.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V2_Postavka.docx)
@@ -32,6 +34,8 @@ Repozitorij za zadatke i kodove iz PR-II
 
 [Vježbe 10  STL](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Vje%C5%BEbe/Vjezbe%2010.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/raw/main/Vje%C5%BEbe/Postavke/V10_Postavka.docx)
 
+<hr>
+
 ## Ispitni Zadaci 
 
 [Ispitni 24.01.2019](Ispitni%20zadaci/Ispitni%2024.1.2019.cpp) - [Postavka](Ispitni%20zadaci/Postavke/Ispitni%2024.1.2019%20postavka.pdf)
@@ -56,3 +60,5 @@ Repozitorij za zadatke i kodove iz PR-II
 
 [Ispitni 16.07.2021 G2](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2016.07.2021%20G2.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Postavke/Ispitni%2016.07.2021%20G2%20postavka.pdf)
 
+
+<hr>
