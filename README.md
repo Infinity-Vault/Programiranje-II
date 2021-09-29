@@ -37,7 +37,7 @@ Repozitorij za zadatke i kodove iz PR-II
 <hr>
 
 <br>
-*Ispitni Zadaci*
+**Ispitni Zadaci**
 
 <hr>
 
