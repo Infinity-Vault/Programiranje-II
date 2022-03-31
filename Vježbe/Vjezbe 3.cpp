@@ -519,38 +519,43 @@ public:
 	Serija()
 	{
 		_naziv = nullptr;
-		_trenutnoEpizoda = 0;
 		_trenutnoUloga = 0;
 		_maxBrojEpizoda = 0;
+		_trenutnoEpizoda = 0;
 		_epizode = nullptr;
 	}
 	//Z5.1
 	Serija(const char* naziv, int maxBrojEpizoda)
 	{
 		_naziv = AlocirajIKopiraj(naziv);
-		_maxBrojEpizoda = maxBrojEpizoda;
-		_epizode = new Epizoda[_maxBrojEpizoda];
-		_trenutnoEpizoda = 0;
 		_trenutnoUloga = 0;
+		for (size_t i = 0; i < 50; i++)
+		{
+			_uloge[i] = nullptr;
+		}
+		_maxBrojEpizoda = maxBrojEpizoda;
+		_trenutnoEpizoda = 0;
+		_epizode = new Epizoda[_maxBrojEpizoda];
 	}
 	//Z5.2
 	Serija(const Serija& obj)
 	{
 		_naziv = AlocirajIKopiraj(obj._naziv);
 		_trenutnoUloga = obj._trenutnoUloga;
-		for (int i = 0;i  < _trenutnoUloga; i++)
+		for (size_t i = 0; i < _trenutnoUloga; i++)
 		{
-			_uloge[i] = new Uloga(*obj._uloge[i]);//Nove pokazivace stavi da pokazuju na stare elemente niza (uloge) pomocu copy .ctor;
+			_uloge[i] = new Uloga(*obj._uloge[i]);
 		}
 		_maxBrojEpizoda = obj._maxBrojEpizoda;
+		_trenutnoEpizoda = obj._trenutnoEpizoda;
+
 		_epizode = new Epizoda[_maxBrojEpizoda];
-		for (int i = 0; i < _maxBrojEpizoda; i++)
+		for (size_t i = 0; i < _trenutnoEpizoda; i++)
 		{
 			_epizode[i].SetNaziv(obj._epizode[i].GetNaziv());
-			_epizode[i].SetTrajanje(obj._epizode[i].GetTrajanje());
 			_epizode[i].SetDatumPremijere(obj._epizode[i].GetDatumPremijere());
-			_epizode[i].SetKratakSadrzaj(obj._epizode[i].GetKratakSadrzaj());
-			for (int j = 0; j < _epizode[i].GetTrenutnoOcjena(); j++)
+			_epizode[i].SetTrajanje(obj._epizode[i].GetTrajanje());
+			for (size_t j = 0; j < _epizode[i].GetTrenutnoOcjena(); j++)
 			{
 				_epizode[i].DodajOcjenu(obj._epizode[i].GetOcjena(j));
 			}
@@ -561,11 +566,7 @@ public:
 	{
 		if (_trenutnoUloga == 50)
 			return false;
-		/*_uloge[_trenutnoUloga]->SetGlumac(uloga.GetGlumac());
-		_uloge[_trenutnoUloga]->SetOpis(uloga.GetOpis());
-		_uloge[_trenutnoUloga]->SetTipUloge(uloga.GetTipUloge());*/
-		//Ili:
-		_uloge[_trenutnoUloga] = new Uloga(uloga);//Cpy .ctor;
+		_uloge[_trenutnoUloga] = new Uloga(uloga);
 		_trenutnoUloga++;
 		return true;
 	}
@@ -575,13 +576,12 @@ public:
 		if (_trenutnoEpizoda == _maxBrojEpizoda)
 			return false;
 		_epizode[_trenutnoEpizoda].SetNaziv(ep.GetNaziv());
-		_epizode[_trenutnoEpizoda].SetTrajanje(ep.GetTrajanje());
 		_epizode[_trenutnoEpizoda].SetKratakSadrzaj(ep.GetKratakSadrzaj());
 		_epizode[_trenutnoEpizoda].SetDatumPremijere(ep.GetDatumPremijere());
-		for (int i = 0; i < ep.GetTrenutnoOcjena(); i++)
+		_epizode[_trenutnoEpizoda].SetTrajanje(ep.GetTrajanje());
+		for (size_t i = 0; i < ep.GetTrenutnoOcjena(); i++)
 		{
-			int ocjena = ep.GetOcjena(i);
-			_epizode[_trenutnoEpizoda].DodajOcjenu(ocjena);
+			_epizode[_trenutnoEpizoda].DodajOcjenu(ep.GetOcjena(i));
 		}
 		_trenutnoEpizoda++;
 		return true;
@@ -589,17 +589,18 @@ public:
 	//Z5.5
 	Epizoda* GetNajboljeOcijenjenaEpizoda()
 	{
-		float najboljaProsjecna = 0.0;
-		Epizoda* najbolja = &_epizode[0];
-		for (int i = 0; i < _trenutnoEpizoda; i++)
+		float najboljaOcjena = 0.0;
+		Epizoda* NajviseOcijenjena = _epizode;
+		for (size_t i = 0; i < _trenutnoEpizoda; i++)
 		{
-			if(_epizode[i].GetProsjecnaOcjena()>=najboljaProsjecna)
+			if (_epizode[i].GetProsjecnaOcjena() >= najboljaOcjena)
 			{
-				najbolja = _epizode + i;
-				najboljaProsjecna = _epizode[i].GetProsjecnaOcjena();
+				NajviseOcijenjena = &_epizode[i];
+				najboljaOcjena = _epizode[i].GetProsjecnaOcjena();
 			}
+
 		}
-		return najbolja;
+		return NajviseOcijenjena;
 	}
 	//Z5.6 :: Pored ostalih atributa ispisati i sve uloge i sve epizode
 	void Ispis()
@@ -627,16 +628,19 @@ public:
 	//Z5.7
 	~Serija()
 	{
-		delete[] _naziv, _naziv = nullptr;
-		delete[] _epizode, _epizode = nullptr;
-		for (int i = 0; i < _trenutnoUloga; i++)
+		delete[] _naziv;
+		_naziv = nullptr;
+
+		for (size_t i = 0; i < 50; i++)
 		{
 			delete _uloge[i];
 			_uloge[i] = nullptr;
 		}
+
+		delete[] _epizode;
+		_epizode = nullptr;
 	}
 };
-
 
 void Zadatak1() {
 	cout << "Testiranje klase 'Datum'\n\n";
