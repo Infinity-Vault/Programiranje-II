@@ -592,24 +592,24 @@ ostream& operator <<(ostream& COUT, const Fudbaler& fudbaler)
 //Z3.12 :: Poredjenje vrijedosti svih atributa jednog objekta sa vrijednostima atributa drugog objekta
 bool operator == (const Fudbaler& f1, const Fudbaler& f2)
 {
-    if (strcmp(f1._ime, f2._ime) == 0)
-        return true;
-    if (strcmp(f1._prezime, f2._prezime) == 0)
-        return true;
-    if (f1._datumRodjenja == f2._datumRodjenja)
-        return true;
-    if (*f1._visina == *f2._visina)
-        return true;
-    if (strcmp(f1._pozicija, f1._pozicija) == 0)
-        return true;
-    if (f1._trenutnoNagrada == f2._trenutnoNagrada)
-        return true;
+    if (strcmp(f1._ime, f2._ime) != 0)
+        return false;
+    if (strcmp(f1._prezime, f2._prezime) != 0)
+        return false;
+    if (f1._datumRodjenja != f2._datumRodjenja)
+        return false;
+    if (*f1._visina != *f2._visina)
+        return false;
+    if (strcmp(f1._pozicija, f1._pozicija) != 0)
+        return false;
+    if (f1._trenutnoNagrada != f2._trenutnoNagrada)
+        return false;
     for (int i = 0; i < f1._trenutnoNagrada; i++)//Podrazumijeva se da su i f1 nagrade i f2 nagrade iste duzine, stoga je svejedno koja se koristi;
     {
-        if (strcmp(f1._nagrade[i], f2._nagrade[i]) == 0)//Poredimo pojedinacne stringove;
-            return true;
+        if (strcmp(f1._nagrade[i], f2._nagrade[i]) != 0)//Poredimo pojedinacne stringove;
+            return false;
     }
-    return false;
+    return true;
 }
 bool operator != (const Fudbaler& f1, const Fudbaler& f2)
 {
