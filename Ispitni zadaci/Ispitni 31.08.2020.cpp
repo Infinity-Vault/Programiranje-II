@@ -57,7 +57,7 @@ class Kolekcija {
 public:
     Kolekcija(Dupliranje dupliranje = SA_DUPLIKATIMA)
     {
-        _trenutno = new int(0);;
+        _trenutno = new int(0);
         _elementi1 = nullptr;
         _elementi2 = nullptr;
         _dupliranje = dupliranje;
