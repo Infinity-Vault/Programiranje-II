@@ -88,6 +88,7 @@ public:
             _elementi1[i] = obj._elementi1[i];
             _elementi2[i] = obj._elementi2[i];
         }
+        return *this;
 
     }
     ~Kolekcija() {
