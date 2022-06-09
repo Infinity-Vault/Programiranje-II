@@ -114,6 +114,9 @@ public:
 
     Kolekcija<T1, T2>operator()(int from, int to)
     {
+        if (from < 0 || to < 0 || from >= _trenutno || to >= _trenutno)
+            throw exception("Opseg nije validan!");
+
         Kolekcija<T1, T2>temp;
 
         for (int i = from; i <= to; i++)
