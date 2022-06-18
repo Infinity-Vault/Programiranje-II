@@ -3,6 +3,7 @@
 #include <regex>
 #include <vector>
 #include <mutex>
+#include <thread>
 
 using namespace std;
 
@@ -93,7 +94,7 @@ public:
         if (from < 0 || to < 0 || from >= *_trenutno || to >= *_trenutno)
             throw exception("Uneseni opseg nije validan!");
 
-        Kolekcija<T1, T2>pom;
+        Kolekcija<T1, T2> pom;
 
         for (int i = from; i <= to; i++)
         {
@@ -477,18 +478,18 @@ public:
         //dodavanje tehnika za vise pojaseve ako ne postoji najmanje jedna tehnika za nizi pojas (ne mozemo dodati tehniku za NARANDZASTI ako ne postoji niti jedna tehnika za ZUTI pojas)
         auto prethodniPojas = [this, pojas, novaTehnika]
         {
+            if (pojas <= 1)
+                return true;
+
             auto prethodni = static_cast<Pojas>(pojas - 1);
 
             for (auto& polozeni : _polozeniPojasevi)
             {
                 if (polozeni.GetPojas() == prethodni)
-                {
-                    if (polozeni.GetTehnike().getTrenutno() < 1)
-                        return false;
-                }
+                    return true;
             }
 
-            return true;
+            return false;
         };
 
         // Pozivamo svaku lambdu kako bi testirali sve trazeno
@@ -529,7 +530,8 @@ const char* GetOdgovorNaDrugoPitanje()
     cout << "Pitanje -> Pojasniti ulogu i način koristenja iteratora?\n";
     return "Odgovor -> Iteratori su objekti koji nam omogucavaju da prodjemo kroz elemente nekog niza ili kolekcije i da im preko njega pristupimo pravilno. Poznajemo ostram operator preko kojeg mozemo ispitati neke podatke sregex iterator preko kojeg mozemo prebrojati koliko rijeci ima u nekom tekstu";
 }
-void main() {
+
+int main() {
 
     cout << PORUKA;
     cin.get();
@@ -576,7 +578,7 @@ void main() {
     //parametri: nazivTehnike, prva ocjena, datum polaganja
     Tehnika choku_zuki("choku_zuki", datum19062021, 5),
         gyaku_zuki("gyaku_zuki", datum20062021, 5),
-        kizami_zuki("kizami_zuki", datum30062021, 2),
+        kizami_zuki("kizami_zuki", datum30062021, 5),
         oi_zuki("oi_zuki", datum05072021, 5);
 
     choku_zuki.AddOcjena(&datum05072021, 3);
@@ -642,6 +644,7 @@ void main() {
     //ne treba dodati choku_zuki jer je vec dodana za zuti pojas
     if (!jasmin->AddTehniku(ZUTI, choku_zuki, "Napomena 5"))
         cout << "Tehnika NIJE uspjesno dodana!" << crt;
+
 
     /*nakon evidentiranja tehnike na bilo kojem pojasu kandidatu se salje email sa porukom:
     FROM:info@karate.ba
