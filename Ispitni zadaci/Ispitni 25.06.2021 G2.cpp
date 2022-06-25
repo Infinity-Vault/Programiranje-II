@@ -110,6 +110,9 @@ public:
 
     void AddElement(T1 el1, T2 el2)
     {
+        if (_trenutno == max)
+            throw exception("Prekoracen opseg kolekcije!");
+
         if (_dupliranje == Dupliranje::BEZ_DUPLIKATA)
         {
             for (int i = 0; i < *_trenutno; i++)
