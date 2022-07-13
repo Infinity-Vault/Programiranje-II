@@ -1,4 +1,4 @@
-# Programiranje-II
+﻿# Programiranje-II
 
 
 ![](https://komarev.com/ghpvc/?username=Programiranje-II&label=Broj+posjeta:)
@@ -71,6 +71,8 @@
 [Ispitni 16.07.2021 G1](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2016.07.2021%20G1.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Postavke/Ispitni%2016.07.2021%20%20G1%20postavka.pdf)
 
 [Ispitni 16.07.2021 G2](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2016.07.2021%20G2.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Postavke/Ispitni%2016.07.2021%20G2%20postavka.pdf)
+
+[Ispitni 30.06.2022](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Ispitni%2030.06.2022.cpp) - [Postavka](https://github.com/Infinity-Vault/Programiranje-II/blob/main/Ispitni%20zadaci/Postavke/Ispitni%2030.06.2022%20postavka.docx)
 
 
 <hr>
