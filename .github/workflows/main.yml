@@ -14,11 +14,12 @@ jobs:
         ref: "main"
     
     # Calculates traffic and clones and stores in CSV file
-    - name: GitHub traffic 
+    - name: Retrieve new traffic 
       uses: sangonzal/repository-traffic-action@v.0.1.6
       env:
         TRAFFIC_ACTION_TOKEN: ${{ secrets.TRAFFIC_ACTION_TOKEN }} 
      
+     # Uploades the new views to Google Drive
     - name: Upload to Google Drive
       uses: Jodebu/upload-to-drive@master
       with:
