@@ -1,14 +1,10 @@
 on: workflow_dispatch 
     
 jobs:
-  # This workflow contains a single job called "traffic"
-  traffic:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+ ReportTraffic:
+   runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+   steps:
     - uses: actions/checkout@v2
       with:
         ref: "main"
@@ -19,9 +15,10 @@ jobs:
       env:
         TRAFFIC_ACTION_TOKEN: ${{ secrets.TRAFFIC_ACTION_TOKEN }} 
      
-    - name: Upload to gdrive
+    - name: Upload to Google Drive
       uses: team-tumbleweed/gdrive-upload-action@main
       with:
           filename: "traffic/views.csv"
+          name: "ProgramiranjeII_views.csv"
           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
           credentials: ${{ secrets.DRIVE_GSA_CREDENTIALS }}
