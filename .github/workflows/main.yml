@@ -22,6 +22,6 @@ jobs:
     - name: Upload to gdrive
       uses: team-tumbleweed/gdrive-upload-action@main
       with:
-          filename: "traffic"
+          filename: "traffic/views.csv"
           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
           credentials: ${{ secrets.DRIVE_GSA_CREDENTIALS }}
