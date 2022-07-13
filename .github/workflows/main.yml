@@ -19,10 +19,9 @@ jobs:
       env:
         TRAFFIC_ACTION_TOKEN: ${{ secrets.TRAFFIC_ACTION_TOKEN }} 
      
-     # Uploades the new views to Google Drive
-    - name: Upload to Google Drive
-      uses: Jodebu/upload-to-drive@master
+    - name: Upload to gdrive
+      uses: team-tumbleweed/gdrive-upload-action@main
       with:
-        target: traffic
-        credentials: ${{ secrets.DRIVE_GSA_CREDENTIALS }}
-        folder: $ {{ secrets.DRIVE_FOLDER_ID }}
+          filename: "traffic"
+          folderId: ${{ secrets.DRIVE_FOLDER_ID }}
+          credentials: ${{ secrets.DRIVE_GSA_CREDENTIALS }}
