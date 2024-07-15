@@ -403,11 +403,11 @@ public:
 
 const char* GetOdgovorNaPrvoPitanje() {
 	cout << "Pitanje -> Pojasnite pojam reprezentacije tipa podatka?\n";
-	return "Odgovor -> OVDJE UNESITE VAS ODGOVOR";
+	return "Odgovor -> Pojam reprezentacije tipa podatka predstavlja nacin njihove pohrane cime se omogucava izvrsenje aplikacije na racunaru.";
 }
 const char* GetOdgovorNaDrugoPitanje() {
 	cout << "Pitanje -> Navedite i ukratko opisite ulogu ios modova koji se koriste pri rada sa fajlovima?\n";
-	return "Odgovor -> OVDJE UNESITE VAS ODGOVOR";
+	return "Odgovor -> Za rad s fajlovima koristimo fstream, a on se sastoji od ifstream (za citanje fajlova) i ofstream (za upisivanje u fajl).";
 }
 
 void main() {
